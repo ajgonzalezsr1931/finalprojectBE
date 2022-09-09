@@ -5,13 +5,18 @@ import java.util.List;
 import com.group4.finalproject.entities.Products;
 
 public interface ProductsServices {
-    
+
      List<Products> getAll();
 
      void add(Products product);
 
-     void remove(Products product);
 
-     Products getUser(String email);
+    List<Products> findByTags(String tag);
+
+    void delete(Long id);
+
+    Products findById(Long id);
+
+    void editById(Long id, Products products); 
 
 }
