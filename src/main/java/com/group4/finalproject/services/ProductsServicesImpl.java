@@ -15,13 +15,13 @@ public class ProductsServicesImpl implements ProductsServices {
     private final ProductsRepository productsRepository;
     @Override
     public List<Products> getAll() {
-        // TODO Auto-generated method stub
+
         return productsRepository.findAll();
     }
 
     @Override
     public void add(Products product) {
-        // TODO Auto-generated method stub
+       productsRepository.save(product);
         
     }
 

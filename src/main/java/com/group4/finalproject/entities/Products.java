@@ -18,21 +18,24 @@ public class Products {
     @GeneratedValue
     private Long id;
     @Column(nullable = false)
+    private String email;
+    @Column(nullable = false)
     private String nameOfPeice;
     @Column(nullable = false)
-    private Long price;
+    private Float price;
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)
     private String tags;
-    @Column(nullable = false)
+    @Column
     private String URL;
 
-    public Products(String nameOfPeice, Long price, String description, String tags, String uRL) {
+    public Products(String email,String nameOfPeice, Float price, String description, String tags, String URL) {
+        this.email=email;
         this.nameOfPeice = nameOfPeice;
         this.price = price;
         this.description = description;
         this.tags = tags;
-        URL = uRL;
+        this.URL = URL;
     }
 }

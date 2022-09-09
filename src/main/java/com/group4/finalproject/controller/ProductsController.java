@@ -3,6 +3,8 @@ package com.group4.finalproject.controller;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,8 +21,12 @@ import lombok.AllArgsConstructor;
 public class ProductsController {
     private ProductsServices productsServices;
     @GetMapping("/all")
-    List<Products> getAll(){
+    public List<Products> getAll(){
         return productsServices.getAll();
     }
-    
+    @PostMapping("/add")
+    public void addProducts(@RequestBody Products product){
+        productsServices.add( product);
+    }
+
 }
