@@ -1,6 +1,7 @@
 package com.group4.finalproject.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -25,16 +26,38 @@ public class ProductsServicesImpl implements ProductsServices {
         
     }
 
+
+
     @Override
-    public void remove(Products product) {
-        // TODO Auto-generated method stub
-        
+    public List<Products> findByTags(String tag) {
+       
+        return productsRepository.findByTags(tag);
     }
 
     @Override
-    public Products getUser(String email) {
-        // TODO Auto-generated method stub
-        return null;
+    public void delete(Long id) {
+        
+        productsRepository.deleteById(id);
     }
+
+    @Override
+    public Products findById(Long id) {
+        
+        return productsRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void editById(Long id, Products products) {
+        Products product = productsRepository.findById(id).orElse(null);
+        product.setDescription(products.getDescription());
+        product.setEmail(products.getEmail());
+        product.setNameOfPiece(products.getNameOfPiece());
+        product.setPrice(products.getPrice());
+        product.setTags(products.getTags());
+        product.setURL(products.getURL());
+        
+    }
+
+   
     
 }
