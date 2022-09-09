@@ -11,7 +11,9 @@ public interface UserServices {
 
     void add(User user);
 
-    void remove(User user);
+    void remove(String email);
 
     Optional<User> getUser(String email);
+
+    User updateUser(String email, User user);
 }
