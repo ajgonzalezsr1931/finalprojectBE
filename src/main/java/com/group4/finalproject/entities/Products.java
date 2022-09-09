@@ -27,7 +27,7 @@ public class Products {
     private String description;
     @Column(nullable = false)
     private String tags;
-    @Column
+    @Column(nullable = false)
     private String URL;
 
     public Products(String email,String nameOfPiece, Float price, String description, String tags, String URL) {
