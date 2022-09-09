@@ -20,7 +20,7 @@ public class Products {
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
-    private String nameOfPeice;
+    private String nameOfPiece;
     @Column(nullable = false)
     private Float price;
     @Column(nullable = false)
@@ -30,9 +30,9 @@ public class Products {
     @Column
     private String URL;
 
-    public Products(String email,String nameOfPeice, Float price, String description, String tags, String URL) {
+    public Products(String email,String nameOfPiece, Float price, String description, String tags, String URL) {
         this.email=email;
-        this.nameOfPeice = nameOfPeice;
+        this.nameOfPiece = nameOfPiece;
         this.price = price;
         this.description = description;
         this.tags = tags;
