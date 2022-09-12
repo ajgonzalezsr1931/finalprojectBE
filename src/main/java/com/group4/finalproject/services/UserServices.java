@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.group4.finalproject.entities.User;
 
 
-public interface UserServices {
+public interface UserServices implements UserDetailsService{
     List<User> getAll();
 
     void add(User user);
