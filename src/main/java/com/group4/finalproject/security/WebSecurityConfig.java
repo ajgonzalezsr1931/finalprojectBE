@@ -1,6 +1,5 @@
 package com.group4.finalproject.security;
 
-import org.apache.catalina.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

@@ -10,39 +10,39 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.group4.finalproject.entities.User;
-import com.group4.finalproject.entities.UserRole;
-import com.group4.finalproject.repositories.UserRepository;
+import com.group4.finalproject.entities.AppUser;
+import com.group4.finalproject.entities.AppUserRole;
+import com.group4.finalproject.repositories.AppUserRepository;
 
 import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class UserServicesImpl implements UserDetailsService{
+public class AppUserServicesImpl implements UserDetailsService{
 
-    private final UserRepository userRepository;
+    private final AppUserRepository appUserRepository;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-    public List<User> getAll() {
-        return userRepository.findAll();
+    public List<AppUser> getAll() {
+        return appUserRepository.findAll();
     }
     
     public void remove(String email) {
-        userRepository.deleteById(email);
+        appUserRepository.deleteById(email);
     }
 
-    public Optional<User> getUser(String email) {
-        return userRepository.findById(email);
+    public Optional<AppUser> getUser(String email) {
+        return appUserRepository.findById(email);
     }
     @Transactional
-    public User updateUser(String email, User user){
-    Optional<User> usertoUpdateOptional= this.userRepository.findById(email);
+    public AppUser updateUser(String email, AppUser user){
+    Optional<AppUser> usertoUpdateOptional= this.appUserRepository.findById(email);
     if (!usertoUpdateOptional.isPresent()){
         return null;
     }
-    User usertoUpdate= usertoUpdateOptional.get();
+    AppUser usertoUpdate= usertoUpdateOptional.get();
     if(user.getEmail() != null){
         usertoUpdate.setEmail(user.getEmail());
     }
@@ -53,24 +53,24 @@ public class UserServicesImpl implements UserDetailsService{
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
     }
-    User updatedUser = this.userRepository.save(usertoUpdate);
+    AppUser updatedUser = this.appUserRepository.save(usertoUpdate);
     return updatedUser;
 }
 
     private final String USER_NOT_FOUND_MSG =   "USER WITH EMAIL %S NOT FOUND";
 
-    public String register(User user){
-        boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
+    public String register(AppUser appUser){
+        boolean userExists = appUserRepository.findByEmail(appUser.getEmail()).isPresent();
 
         if (userExists){
             throw new IllegalStateException("Email is already used");
         }
 
-        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
+        String encodedPassword = bCryptPasswordEncoder.encode(appUser.getPassword());
+        appUser.setPassword(encodedPassword);
 
-        user.setRole(UserRole.USER);
-        userRepository.save(user);
+        appUser.setRole(AppUserRole.USER);
+        appUserRepository.save(appUser);
 
         return "Registered";
     }
@@ -78,7 +78,7 @@ public class UserServicesImpl implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        return userRepository.findByEmail(email)
+        return appUserRepository.findByEmail(email)
         .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
     }
 }
