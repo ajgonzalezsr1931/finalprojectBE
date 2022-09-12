@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.group4.finalproject.entities.Products;
 import com.group4.finalproject.repositories.ProductsRepository;
@@ -47,14 +48,35 @@ public class ProductsServicesImpl implements ProductsServices {
     }
 
     @Override
-    public void editById(Long id, Products products) {
-        Products product = productsRepository.findById(id).orElse(null);
-        product.setDescription(products.getDescription());
-        product.setEmail(products.getEmail());
-        product.setNameOfPiece(products.getNameOfPiece());
-        product.setPrice(products.getPrice());
-        product.setTags(products.getTags());
-        product.setURL(products.getURL());
+    @Transactional
+    public Products editById(Long id, Products products) {
+        Optional<Products>product = productsRepository.findById(id);
+        if(!product.isPresent()){
+            return null;
+        }
+        Products productsUpdate = product.get();
+        if(products.getDescription() != null){
+            productsUpdate.setDescription(products.getDescription());
+        }
+       if(products.getEmail() != null){
+        productsUpdate.setEmail(products.getEmail());
+        }
+        if(products.getNameOfPiece() != null){
+        productsUpdate.setNameOfPiece(products.getNameOfPiece());
+        }
+        if(products.getPrice() != null){
+        productsUpdate.setPrice(products.getPrice());
+        }
+        if(products.getTags() != null){
+            productsUpdate.setTags(products.getTags());
+        }
+        if(products.getURL() != null){
+            productsUpdate.setURL(products.getURL());
+        }
+       return productsUpdate;
+       
+        
+        
         
     }
 

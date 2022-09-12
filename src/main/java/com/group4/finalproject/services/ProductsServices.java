@@ -17,6 +17,6 @@ public interface ProductsServices {
 
     Products findById(Long id);
 
-    void editById(Long id, Products products); 
+    Products editById(Long id, Products products); 
 
 }

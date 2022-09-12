@@ -38,4 +38,6 @@ public class Products {
         this.tags = tags;
         this.URL = URL;
     }
+
+    
 }
