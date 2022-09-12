@@ -18,14 +18,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.group4.finalproject.entities.User;
-// import com.security.coursecatlog.entity.User;
+import com.group4.finalproject.entities.AppUser;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
 @AllArgsConstructor
 @Slf4j
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+  
   private final AuthenticationManager authenticationManager;
   
   @Override
@@ -47,7 +48,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
       HttpServletResponse response, FilterChain chain,
       Authentication authResult) throws IOException, ServletException {
     
-    User user = (User)authResult.getPrincipal();
+    AppUser user = (AppUser)authResult.getPrincipal();
 
     Algorithm algorithm = Algorithm.HMAC256("ArtHub".getBytes());
 

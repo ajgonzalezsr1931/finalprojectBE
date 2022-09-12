@@ -1,6 +1,6 @@
 package com.group4.finalproject.entities;
 
-public enum UserRole {
+public enum AppUserRole {
     USER,
     ADMIN
 }

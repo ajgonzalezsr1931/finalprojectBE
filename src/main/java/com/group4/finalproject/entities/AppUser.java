@@ -4,21 +4,18 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,7 +24,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class User implements UserDetails{
+public class AppUser implements UserDetails{
     @Id
     private String email;
 
@@ -42,9 +39,9 @@ public class User implements UserDetails{
     private Date timeStamp;
 
     @Enumerated(EnumType.STRING)
-    private UserRole role;
+    private AppUserRole role;
 
-    public User(String email, String username, String password) {
+    public AppUser(String email, String username, String password) {
         this.email = email;
         this.username = username;
         this.password = password;
@@ -59,7 +56,7 @@ public class User implements UserDetails{
     @Override
     public boolean isAccountNonExpired() {
         
-        return false;
+        return true;
     }
 
     @Override
