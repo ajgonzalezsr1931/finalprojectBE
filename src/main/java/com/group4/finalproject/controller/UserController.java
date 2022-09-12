@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.group4.finalproject.entities.User;
-import com.group4.finalproject.services.UserServices;
+import com.group4.finalproject.services.UserServicesImpl;
 
 import lombok.AllArgsConstructor;
 
@@ -22,26 +22,26 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @RequestMapping("api/v1/user")
 public class UserController {
-    private UserServices userServices;
+    private UserServicesImpl userServicesImpl;
 
     @GetMapping("/all")
     public List<User> getAll(){
-        return userServices.getAll();
+        return userServicesImpl.getAll();
     }
 
     @Transactional
     @PostMapping("/add")
     public void addUser(@RequestBody User user){
-        userServices.add(user);
+        userServicesImpl.register(user);
     }
 
     @DeleteMapping("/delete/{email}")
     public void deleteById(@PathVariable String email){
-        userServices.remove(email);
+        userServicesImpl.remove(email);
     }
     @PutMapping("update/{email}")
     public User updateUser(@PathVariable String email, @RequestBody User user){
-        return userServices.updateUser(email, user);
+        return userServicesImpl.updateUser(email, user);
     }
 }
 

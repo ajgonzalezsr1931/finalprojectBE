@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.group4.finalproject.entities.User;
-import com.security.coursecatlog.entity.AppUser;
+// import com.security.coursecatlog.entity.User;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
