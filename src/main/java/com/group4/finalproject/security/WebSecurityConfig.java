@@ -35,8 +35,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/login").permitAll();
     http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/v1/user/add").permitAll();
     http.authorizeHttpRequests().antMatchers(HttpMethod.GET, "/api/v1/user/*").hasAnyAuthority("USER","ADMIN");
-    http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/v1/user/*").hasAnyAuthority("ADMIN");
-    //http.authorizeHttpRequests().anyRequest().authenticated();
+    http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/v1/user/*").hasAnyAuthority("USER","ADMIN");
+    http.authorizeHttpRequests().antMatchers(HttpMethod.PUT, "/api/v1/user/*").hasAnyAuthority("USER","ADMIN");
+    http.authorizeHttpRequests().antMatchers(HttpMethod.DELETE, "/api/v1/user/*").hasAnyAuthority("ADMIN");
+    http.authorizeHttpRequests().antMatchers(HttpMethod.GET, "/api/v1/products/*").hasAnyAuthority("USER","ADMIN");
+    http.authorizeHttpRequests().antMatchers(HttpMethod.POST, "/api/v1/products/*").hasAnyAuthority("USER","ADMIN");
+    http.authorizeHttpRequests().anyRequest().authenticated();
     http.addFilter(new CustomAuthenticationFilter (authenticationManagerBean()));
     http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
   }
