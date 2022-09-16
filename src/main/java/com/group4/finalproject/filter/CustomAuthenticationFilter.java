@@ -60,5 +60,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
       .sign(algorithm);
     
     response.setHeader("access_token", token);
+  
   }   
 }

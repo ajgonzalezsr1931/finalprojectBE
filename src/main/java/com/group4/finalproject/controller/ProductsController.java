@@ -3,6 +3,7 @@ package com.group4.finalproject.controller;
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/v1/products")
-
+@CrossOrigin
 public class ProductsController {
     private ProductsServices productsServices;
     @GetMapping("/all")
@@ -30,6 +31,7 @@ public class ProductsController {
         return productsServices.getAll();
     }
     @Transactional
+  
     @PostMapping("/add")
     public void addProducts(@RequestBody Products product){
         productsServices.add( product);
