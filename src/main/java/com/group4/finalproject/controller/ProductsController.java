@@ -23,7 +23,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/v1/products")
-
+@CrossOrigin
 public class ProductsController {
     private ProductsServices productsServices;
     @GetMapping("/all")
@@ -31,7 +31,7 @@ public class ProductsController {
         return productsServices.getAll();
     }
     @Transactional
-    @CrossOrigin
+  
     @PostMapping("/add")
     public void addProducts(@RequestBody Products product){
         productsServices.add( product);
