@@ -15,6 +15,7 @@ import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -60,6 +61,22 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
       .sign(algorithm);
     
     response.setHeader("access_token", token);
+    // response.addCookie(token);
+    // responseBody.add("access_token", token);
+    
+    // response.setContentType("application/json");
+    // response.setCharacterEncoding("UTF-8");
+    // response.getWriter().write(
+    //         "token"
+    // );
+    // response.setContentType("text/html");
+    // response.setCharacterEncoding("UTF-8");
+    // response.getWriter().write(
+    //   "<script type='text/javascript'>onload=()=>{localStorage.setItem('jwt', '" + token.toString() + "');console.log(localStorage.getItem('jwt'));}</script>" +
+    //   "<h3>JWT HAS BEEN SET IN LOCAL STORAGE</h3>" +
+    //         "<p>{ 'token': '" + token.toString() + "'}</p>"
+    //         + "<p><a href='courses.html'>go to next page</a></p>"
+    // );
   
   }   
 }
